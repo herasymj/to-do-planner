@@ -1,49 +1,43 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+  <q-page class="q-pa-md">
+    <q-card class="q-mt-md">
+      <q-card-section class="text-h5">
+        <div class="row">
+          <div class="col">
+            To Do List
+          </div>
+          <div class="col text-right">
+            <q-btn
+              color="primary"
+              label="new item"
+              class="text-right"
+            />
+          </div>
+        </div>
+        <q-separator class="q-my-lg bg-accent" size="3px"/>
+      </q-card-section>
+      <q-card-section>
+        <div v-for="item in todoItems">
+          <ListItem item="item"/>
+        </div>
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 
 <script lang="ts">
-import { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ExampleComponent.vue';
 import { defineComponent, ref } from 'vue';
+import ListItem from 'components/ListItem.vue';
 
 export default defineComponent({
   name: 'IndexPage',
-  components: { ExampleComponent },
-  setup () {
-    const todos = ref<Todo[]>([
-      {
-        id: 1,
-        content: 'ct1'
-      },
-      {
-        id: 2,
-        content: 'ct2'
-      },
-      {
-        id: 3,
-        content: 'ct3'
-      },
-      {
-        id: 4,
-        content: 'ct4'
-      },
-      {
-        id: 5,
-        content: 'ct5'
-      }
-    ]);
-    const meta = ref<Meta>({
-      totalCount: 1200
-    });
-    return { todos, meta };
+  components: {ListItem},
+  setup() {
+    const todoItems = ref([])
+
+    return {
+      todoItems
+    }
   }
 });
 </script>
