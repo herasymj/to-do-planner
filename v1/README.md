@@ -1,11 +1,13 @@
 # To Do Planner (to-do-planner)
 
-A Quasar Project
+- Setup app packages - Node and NPM
+- Setup DB - Prisma Docs
+- Run app - Quasar
+- Run unit and integration tests - Vitest Docs
+
 
 ## Install the dependencies
 ```bash
-yarn
-# or
 npm install
 ```
 
@@ -13,12 +15,3 @@ npm install
 ```bash
 quasar dev
 ```
-
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
