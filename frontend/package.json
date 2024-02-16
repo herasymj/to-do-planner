@@ -8,12 +8,11 @@
   "scripts": {
     "test": "echo \"See package.json => scripts for available tests.\" && exit 0",
     "dev": "quasar dev",
-    "build": "quasar build",
-    "test:unit": "vitest",
-    "test:unit:ci": "vitest run"
+    "build": "quasar build"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
+    "axios": "^1.6.7",
     "quasar": "^2.8.0",
     "vue": "^3.4.18",
     "vue-router": "^4.0.12"

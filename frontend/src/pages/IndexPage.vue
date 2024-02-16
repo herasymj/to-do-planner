@@ -15,11 +15,14 @@
             />
           </div>
         </div>
-        <q-separator class="q-my-lg bg-accent" size="3px"/>
+        <q-separator class="q-mt-lg bg-accent" size="3px"/>
       </q-card-section>
       <q-card-section>
         <div v-for="item in todoItems">
-          <task-item :item="item"/>
+          <task-item
+            :item="item"
+            @delete-task="deleteSelectedTask(item.id)"
+          />
         </div>
       </q-card-section>
     </q-card>
@@ -27,17 +30,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref } from 'vue';
+import { defineComponent, inject, onMounted, Ref, ref } from 'vue';
 import TaskItem from 'components/TaskItem.vue';
 import { useQuasar } from 'quasar';
-import { createTask, Task } from 'src/components/listService';
+import { createTaskService, deleteTaskService, getTasksService, Task } from 'src/components/listService';
+import { AxiosInstance } from 'axios';
 
 export default defineComponent({
   name: 'IndexPage',
-  components: {TaskItem},
+  components: { TaskItem },
   setup() {
     const $q = useQuasar();
-    const todoItems = ref([]);
+    const axios: AxiosInstance = inject('axios') as AxiosInstance;
+    let todoItems: Ref<Task[]> = ref([]);
+
+    onMounted(async () => {
+      await getTasksService(axios).then(res => {
+        if (res !== undefined) {
+          todoItems.value = res;
+        }
+      });
+    })
 
     async function newTask () {
       $q.dialog({
@@ -50,7 +63,7 @@ export default defineComponent({
         cancel: true,
         persistent: true
       }).onOk(async data => {
-        await createTask(data).then((item: Task) => {
+        await createTaskService(axios, data).then((item: Task) => {
           if (item) {
             todoItems.value.push(item);
           }
@@ -58,9 +71,15 @@ export default defineComponent({
       })
     }
 
+    function deleteSelectedTask(taskId: number) {
+      deleteTaskService(axios, taskId);
+      todoItems.value = todoItems.value.filter(item => item.id !== taskId);
+    }
+
     return {
       todoItems,
-      newTask
+      newTask,
+      deleteSelectedTask
     }
   }
 });
