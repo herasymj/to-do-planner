@@ -5,7 +5,7 @@
         <q-toolbar-title>
           To Do List Sample App - V1
         </q-toolbar-title>
-        <div>w/ no backend OR db</div>
+        <div></div>
       </q-toolbar>
     </q-header>
     <q-page-container>

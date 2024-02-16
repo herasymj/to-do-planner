@@ -1,15 +1,17 @@
 <template>
- {{item}}
+  <q-card>
+    {{item}}
+  </q-card>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { ListItem } from './listService';
+import { Task } from 'components/listService';
 export default defineComponent({
-  name: 'ListItem',
+  name: 'TaskItem',
   props: {
     item: {
-      type: Object as PropType<ListItem>
+      type: Object as PropType<Task>
     }
   }
 })

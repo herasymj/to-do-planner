@@ -24,7 +24,7 @@ module.exports = configure(function (/* ctx */) {
     framework: {
       config: {},
       iconSet: 'material-icons',
-      plugins: []
+      plugins: ['Dialog']
     },
     ssr: {
       pwa: false,
