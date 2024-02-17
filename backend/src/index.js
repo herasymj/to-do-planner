@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import cors from 'cors';
 import express from "express";
-import {deleteTask, updateTask, getTasks, createTask} from "./taskService.js";
+import { deleteTask, updateTask, getTasks, createTask } from "./taskService.js";
 
 // Setup variables
 const prisma = new PrismaClient()
