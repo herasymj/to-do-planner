@@ -21,6 +21,4 @@ https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relat
 ## Running Tests
 https://vitest.dev/guide/
 
-Unit tests: `command here`
-Integration Tests: `command here`
-- Run unit and integration tests - Vitest Docs
+Tests: `npm test`
